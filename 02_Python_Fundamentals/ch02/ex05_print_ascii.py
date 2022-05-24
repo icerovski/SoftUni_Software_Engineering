@@ -4,6 +4,8 @@ separated by a single space. On the first line of input, you will receive the ch
 you should start with. On the second line - the index of the last character you should print. 
 '''
 
+# https://www.programiz.com/python-programming/examples/ascii-character
+
 start_index = int(input())
 end_index = int(input())
 separator = ' '
