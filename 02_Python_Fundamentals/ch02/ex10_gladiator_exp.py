@@ -38,4 +38,15 @@ for fight_number in range(1, num_lost_fights + 1):
             if shield_breaks % 2 == 0:
                 expenses += armor_cost
 
+# Solution 2
+total_helmets_broken = num_lost_fights // 2
+total_swords_broken = num_lost_fights // 3
+total_shields_broken = num_lost_fights // 6
+total_armor_broken = num_lost_fights // 2
+
+expenses = total_helmets_broken * helmet_cost + \
+    total_swords_broken * sword_cost + \
+    total_shields_broken * shield_cost + \
+    total_armor_broken * armor_cost
+
 print(f'Gladiator expenses: {expenses:.2f} aureus')
