@@ -26,3 +26,7 @@ print(number_of_elevator_rides)
 # Solution 3 - Time 0.070s
 number_of_elevator_rides = ceil(people_count / elevator_capacity)
 print(number_of_elevator_rides)
+
+# Solution 4
+number_of_elevator_rides = 0 if elevator_capacity == 0 else ceil(people_count / elevator_capacity)
+print(number_of_elevator_rides)
