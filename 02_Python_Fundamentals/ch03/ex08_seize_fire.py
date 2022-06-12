@@ -25,3 +25,37 @@ Input / Constraints
 Output
 Print the output as described above.
 '''
+
+list_of_fires = input().split('#')
+water = int(input())
+effort = 0
+total_fire = 0
+cells_saved = []
+
+for fire in list_of_fires:
+    fire_cell = fire.split(' = ')
+    fire = fire_cell[0]
+    cell = int(fire_cell[1])
+    if fire == 'Low':
+        if not 0 < cell <= 50:
+            continue
+    elif fire == 'Medium':
+        if not 50 < cell <= 80:
+            continue
+    elif fire == 'High':
+        if not 80 < cell <= 125:
+            continue
+    if water < cell:
+        continue
+
+    effort += 0.25 * cell
+    water -= cell
+    total_fire += cell
+    cells_saved.append(str(cell))
+
+print('Cells:')
+if cells_saved:
+    print('-', end=' ')
+    print('\n- '.join(cells_saved))
+print(f'Effort: {effort:.2f}')
+print(f'Total Fire: {total_fire}')
