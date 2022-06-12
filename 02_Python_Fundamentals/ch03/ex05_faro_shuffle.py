@@ -9,5 +9,21 @@ The same list with 3 beggars would produce a better outcome for the second begga
 Also, note that not all beggars have to take the same amount of "offers", meaning that the length of the list is not necessarily a multiple of n. The list length could be even shorter - i.e., the last beggars will take nothing (0).
 '''
 
+def shuffle_cards(cards):
+    left_cards = cards[:mid_index]
+    right_cards = cards[mid_index:]
+    shuffled_deck = []
+    for i in range(mid_index):
+        shuffled_deck.append(left_cards[i])
+        shuffled_deck.append(right_cards[i])
+    return shuffled_deck
+
 cards_list = input().split(' ')
 count = int(input())
+
+mid_index = len(cards_list) // 2
+for _ in range(count):
+    cards_list = shuffle_cards(cards_list)
+
+print(cards_list)
+
