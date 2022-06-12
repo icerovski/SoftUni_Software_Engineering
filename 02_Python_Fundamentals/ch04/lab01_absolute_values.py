@@ -1,21 +1,10 @@
-# numbers = input().split(' ')
-# abs_numbers = []
-# for num in numbers:
-#     abs_numbers.append(abs(float(num)))
-# print(abs_numbers)
+'''
+Write a program that receives a sequence of numbers, separated by a single space, and
+prints their absolute value as a list. Use abs().
+'''
+def absolute(x):
+    return abs(x)
 
-# numbers = list(map(float, input().split(' ')))
-# print(numbers)
-
-
-# result = [abs(num) for num in numbers]
-# print(result)
-
-def countdown(number):
-    print(number)
-
-    if number == 0:
-        return
-    countdown(number - 1)
-
-countdown(5)
+sequence = list(map(float, input().split(' ')))
+abs_sequence = list(map(absolute, sequence))
+print(abs_sequence)

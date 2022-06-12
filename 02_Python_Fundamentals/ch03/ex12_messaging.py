@@ -8,3 +8,6 @@ When you find a char, you should add it to the message and remove it from the st
 It means that for the following index, the text will be with one character less.
 Print the final message.
 '''
+sequence = list(map(int, input().split(' ')))
+string_input = input()
+print(chr(97))
