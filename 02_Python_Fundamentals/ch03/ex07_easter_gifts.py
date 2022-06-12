@@ -21,18 +21,17 @@ Output
 '''
 gift_names = input().split(' ')
 command_input = input()
-# updated_gift_names = []
 while command_input != 'No Money':
     command_list = command_input.split(' ')
     command = command_list[0]
     gift_update = command_list[1]
     if command == 'OutOfStock':
-        for name in gift_names:
-            if name == gift_update:
-                name = None
+        for i in range(len(gift_names)):
+            if gift_names[i] == gift_update:
+                gift_names[i] = None
     elif command == 'Required':
         command_index = int(command_list[2])
-        if command_index < len(gift_names):
+        if 0 <= command_index < len(gift_names):
             gift_names[command_index] = gift_update
     elif command == 'JustInCase':
         gift_names[-1] = gift_update
