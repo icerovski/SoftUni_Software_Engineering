@@ -10,7 +10,6 @@ Hint
 Every perfect number is half the sum of all its positive divisors (including itself) =>
 the sum of all positive divisors (all of which are divided without remainder) of 6 is 1 + 2 + 3 + 6 = 12. Half of 12 is 6 => 6 is perfect number.
 •	You could read more about the perfect number here: https://en.wikipedia.org/wiki/Perfect_number
-
 '''
 
 def positive_divisors(num):
