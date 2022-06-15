@@ -12,10 +12,10 @@ the sum of all positive divisors (all of which are divided without remainder) of
 •	You could read more about the perfect number here: https://en.wikipedia.org/wiki/Perfect_number
 '''
 
-def positive_divisors(num):
+def positive_divisors(number):
     array = []
-    for i in range(num -1, 0, -1):
-        if num % i == 0:
+    for i in range(number -1, 0, -1):
+        if number % i == 0:
             array.append(i)
     return array
 

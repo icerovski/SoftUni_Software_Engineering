@@ -14,15 +14,15 @@ def recursive_split(number, cummulative_numbers):
         return recursive_split(number, cummulative_numbers)
     return cummulative_numbers
 
-def sum_odd(numbers):
-    filtered = list(filter(lambda x: x % 2 != 0, numbers))
+def sum_odd(nums):
+    filtered = list(filter(lambda x: x % 2 != 0, nums))
     res = 0
     if filtered:
         res = reduce(lambda x, y: x + y, filtered)
     return res
 
-def sum_even(numbers):
-    filtered = list(filter(lambda x: x % 2 == 0, numbers))
+def sum_even(nums):
+    filtered = list(filter(lambda x: x % 2 == 0, nums))
     res = 0
     if filtered:
         res = reduce(lambda x, y: x + y, filtered)
