@@ -3,7 +3,7 @@ Write a program that reads a single string with numbers separated by comma and s
 '''
 
 nums = list(map(int, input().split(', ')))
-# even_indeces = [nums.index(num) for num in nums if num % 2 == 0]
+# even_indeces = [i for i in range(len(nums)) if nums[i] % 2 == 0]
 
 found_indices_or_no = map(
     lambda x: x if nums[x] % 2 == 0 else 'no',
