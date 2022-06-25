@@ -25,3 +25,46 @@ Output
 •	In the end, print the sequence of targets in the format described above.
 '''
 
+def shoot(index, power, sequence):
+	if 0 <= index < len(sequence):
+		sequence[index] -= power
+		if sequence[index] <= 0:
+			sequence.pop(index)
+	return sequence
+
+def add(index, value, sequence):
+	if 0 <= index < len(sequence):
+		return sequence.insert(index, value)
+	print('Invalid placement!')
+
+def strike(index, radius, sequence):
+	if 0 <= index < len(sequence):
+		if radius <= index < len(sequence) - radius:
+			start = index - radius
+			index_range = 2 * radius + 1
+			result = list(filter(lambda i: sequence.pop(start), range(index_range)))
+			return result
+	print('Strike missed!')
+
+def command_func(lst, sequence):
+	index = int(lst[1])
+	action = int(lst[2])
+	if lst[0] == 'Shoot':
+		result = shoot(index, action, sequence)
+	elif lst[0] == 'Add':
+		result = add(index, action, sequence)
+	elif lst[0] == 'Strike':
+		result = strike(index, action, sequence)
+	return result
+
+
+targets = list(map(int, input().split(' ')))
+while True:
+	command_str = input()
+	if command_str == 'End':
+		targets_str = list(map(str, targets))
+		print('|'.join(targets_str))
+		break
+
+	command_func(command_str.split(' '), targets)
+

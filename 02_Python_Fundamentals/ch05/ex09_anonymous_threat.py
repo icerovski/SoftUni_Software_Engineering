@@ -26,9 +26,12 @@ Constrains
 •	Allowed working time/memory: 100ms / 16MB.
 '''
 
+
 str_list = input().split(' ')
 while True:
     command = input()
     if command == '3:1':
         break
     command_list = command.split(' ')
+    if command_list[0] == 'merge':
+        pass
