@@ -26,31 +26,41 @@ Output
 '''
 
 def update_junk(name, qty):
-    if name not in materials:
-        materials[name] = {'quantity' : 0}
-    materials[name]['quantity'] += qty
+    if name not in junk:
+        junk[name] = 0
+    junk[name] += qty
 
 materials = {}
 junk = {}
-materials['Shards'] = {'Legendary' : 'Shadowmourne', 'quantity' : 0}
-materials['Fragments'] = {'Legendary' : 'Valanyr', 'quantity' : 0}
-materials['Motes'] = {'Legendary' : 'Dragonwrath', 'quantity' : 0}
+materials['shards'] = {'legendary' : 'Shadowmourne', 'quantity' : 0}
+materials['fragments'] = {'legendary' : 'Valanyr', 'quantity' : 0}
+materials['motes'] = {'legendary' : 'Dragonwrath', 'quantity' : 0}
 winner_quantity = 250
+have_winner = False
 
-input_lst = input().split(' ')
-for i in range(0, len(input_lst), 2):
-    new_quantity = int(input_lst[i])
-    material = input_lst[i+1]
-    if material not in materials:
-        update_junk(material, new_quantity)
-        continue
+while True:
+    input_lst = input().split(' ')
+    for i in range(0, len(input_lst), 2):
+        new_quantity = int(input_lst[i])
+        material = input_lst[i+1].lower()
+        if material not in materials:
+            update_junk(material, new_quantity)
+            continue
+        
+        current_quantity = materials[material]['quantity']
+        materials[material]['quantity'] += new_quantity
+        if materials[material]['quantity'] >= winner_quantity:
+            materials[material]['quantity'] -= winner_quantity
+            legendary_item = materials[material]['legendary']
+            have_winner = True
+            break
     
-    materials[material]['quantity'] += new_quantity
-    if materials[material]['quantity'] >= winner_quantity:
-        materials[material]['quantity'] -= winner_quantity
-        legendary_item = materials[material]['Legendary']
-        print(f'{legendary_item} obtained!')
+    if have_winner:
         break
 
+print(f'{legendary_item} obtained!')
 for k, v in materials.items():
     print(f'{k}: {v["quantity"]}')
+
+for k, v in junk.items():
+    print(f'{k}: {v}')
