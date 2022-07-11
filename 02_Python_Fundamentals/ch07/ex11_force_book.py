@@ -29,3 +29,60 @@ Output
 •	In case there are NO force users on a side, don't print this side. 
 '''
 
+def split_function(line):
+    if ' | ' in line:
+        separator = ' | '
+        force_side_index = 0
+        force_user_index = 1
+    elif ' -> ' in line:
+        separator = ' -> '
+        force_side_index = 1
+        force_user_index = 0
+    return {
+        'separator' : separator, 
+        'side' : force_side_index, 
+        'user' : force_user_index,
+        }
+
+def not_in_values(user):
+    result = True
+    for u in force_book.values():
+        if user in u:
+            result = False
+            break
+    return result
+
+def update_force_book(side, user):
+    if side not in force_book.keys():
+        force_book[side] = []
+    if  not_in_values(user):
+        force_book[side].append(user)
+
+def update_existing_user(side, user):
+    for u in force_book.values():
+        if user in u:
+            u.pop(u.index(user))
+    update_force_book(side, user)
+
+force_book = {}
+while True:
+    line = input()
+    if line == 'Lumpawaroo':
+        break
+
+    commands = split_function(line)
+    pair = line.split(commands['separator'])
+    force_side = pair[commands['side']]
+    force_user = pair[commands['user']]
+
+    if commands['separator'] == ' | ':
+        update_force_book(force_side, force_user)
+    else:
+        update_existing_user(force_side, force_user)
+        print(f'{force_user} joins the {force_side} side!')
+
+for key, value in force_book.items():
+    if not value:
+        continue
+    print(f'Side: {key}, Members: {len(value)}')
+    print('\n'.join(['! ' + el for el in value]))
