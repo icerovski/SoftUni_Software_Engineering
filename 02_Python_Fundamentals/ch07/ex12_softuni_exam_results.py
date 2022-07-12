@@ -24,3 +24,62 @@ Output
 •	Allowed working time / memory: 100ms / 16MB
 '''
 
+
+from audioop import reverse
+
+
+def update_points(user, lang, points):
+    if students[user][lang]:
+        result = max(students[user][lang], points)
+    else:
+        result = points
+    return result
+
+def update_students(user, lang, points):
+    if user not in students:
+        students[user] = {}
+    if lang not in students[user]:
+        students[user] = {lang : []}
+    students[user][lang].append(points)
+    
+def update_submissions(lang):
+    if lang not in submissions.keys():
+        submissions[lang] = 0
+    submissions[lang] += 1
+
+def sort_values(dictionary):
+    for language in dictionary.values():
+        for scores in language.values():
+            scores.sort(reverse=True)
+    
+
+students = {}
+submissions = {}
+while True:
+    line = input()
+    if line == 'exam finished':
+        break
+    commands = line.split('-')
+    username = commands[0]
+
+    if commands[1] == 'banned':
+        del students[username]
+    else:
+        language = commands[1]
+        points = int(commands[2])
+
+        update_students(username, language, points)
+        update_submissions(language)
+
+# sort_values(students)
+
+print('Results:')
+for name, score in students.items():
+    for score_list in score.values():
+        max_score = sorted(score_list, reverse=True)[0]
+        print(f'{name} | {max_score}')
+
+print('Submissions:')
+for k, v in submissions.items():
+    print(f'{k} - {v}')
+    
